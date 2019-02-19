@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+</head>
+<body>
+<!--当前用户:
+<div th:text="${name}" id="mydiv" th:id="${id}"></div>-->
+
+<hr />
+用户列表：
+<table>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>手机号</th>
+        <th>生日</th>
+        <th>性别</th>
+        <th>地址</th>
+    </tr>
+
+    <!--遍历-->
+    <tr th:each="user : ${users}">
+        <td>[[${user.id}]]</td><!--行内写法-->
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.telphone}"></td>
+        <td th:text="${#dates.format(user.birthday, 'yyyy/MM/dd HH:mm:ss')}"></td>
+        <td th:if="${user.gender==0}">男</td>
+        <td th:if="${user.gender==1}">女</td>
+        <td th:if="${user.gender==2}">保密</td>
+        <!--<td th:text="${user.gender}"></td>--><!--0 男 1 女 2 保密-->
+        <td th:text="${user.address}"></td>
+    </tr>
+</table>
+</body>
+</html>
